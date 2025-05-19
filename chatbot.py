@@ -15,3 +15,20 @@ responses = {
     "goodbye": ["Goodbye!", "See you later!", "Bye! Have a great day!"],
     "default": ["I'm not sure I understand. Can you rephrase?", "Interesting! Tell me more."]
 }
+
+# Simple intent matcher using spaCy
+def get_intent(user_input):
+    doc = nlp(user_input.lower())
+
+    if any(token.lemma_ in ['hi', 'hello', 'hey'] for token in doc):
+        return "greeting"
+    elif "how" in user_input and "you" in user_input:
+        return "how_are_you"
+    elif "weather" in user_input:
+        return "weather"
+    elif "your name" in user_input or "who are you" in user_input:
+        return "name"
+    elif any(token.lemma_ in ['bye', 'goodbye', 'see you'] for token in doc):
+        return "goodbye"
+    else:
+        return "default"
