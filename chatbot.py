@@ -1,6 +1,6 @@
-import nltk
+
 import spacy
-from nltk.tokenize import word_tokenize
+
 import random
 
 # Load English tokenizer and tagger from spaCy
@@ -46,3 +46,8 @@ def chat():
         intent = get_intent(user_input)
         reply = random.choice(responses[intent])
         print("ChatBot:", reply)
+
+
+# Run the chatbot
+if __name__ == "__main__":
+    chat()
