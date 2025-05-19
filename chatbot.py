@@ -32,3 +32,17 @@ def get_intent(user_input):
         return "goodbye"
     else:
         return "default"
+    
+# Chat loop
+def chat():
+    print("ChatBot: Hello! Type 'bye' to exit.")
+
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ['bye', 'exit', 'quit']:
+            print("ChatBot:", random.choice(responses["goodbye"]))
+            break
+
+        intent = get_intent(user_input)
+        reply = random.choice(responses[intent])
+        print("ChatBot:", reply)
